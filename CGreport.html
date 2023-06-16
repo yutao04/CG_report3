@@ -60,6 +60,17 @@
             var mat = new THREE.MeshPhongMaterial();
             mat.map = texture;
 
+            // 人間をスプライトで作成
+            var texture0 = textureLoader.load("human.png");
+            const material0 = new THREE.SpriteMaterial({ map: texture0, });
+
+            const sprite0 = new THREE.Sprite(material0);
+            sprite0.position.x = 0;
+            sprite0.position.y = 50;
+            sprite0.position.z = 0;
+            sprite0.scale.set(100, 100, 100);
+            scene.add(sprite0);
+
             // 太陽を作成
             var sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
             //半径、垂直方向の分割数、水平方向の分割数
@@ -93,8 +104,8 @@
                 renderer.render(scene, camera);
                 requestAnimationFrame(update);
 
-                 // 球を回転させる
-                 sun.rotation.x += 0.01;
+                // 球を回転させる
+                sun.rotation.x += 0.01;
                 sun.rotation.y += 0.01;
             }
         }
