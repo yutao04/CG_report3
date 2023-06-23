@@ -8,7 +8,8 @@
 
 <body>
     <h1>独特な世界観を作成</h1>
-    テクスチャマッピングを使って太陽を作成し、ループ処理を使って、人間と星を作成した。カメラのアングルを上にすると、猫神様がこちらを眺めている。<br>
+    テクスチャマッピングを使って太陽を作成し、ループ処理を使って、人間と星を作成した。<br>
+    カメラのアングルを上にすると、猫神様がこちらを眺めている。
     <script>
         // ページの読み込みを待つ
         window.addEventListener('DOMContentLoaded', init);
@@ -54,13 +55,33 @@
             const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
             scene.add(axisHelper);
 
+            // テクスチャ読み込み
+            var texPlane = new THREE.TextureLoader().load('earth.png');
+            texPlane.anisotropy = renderer.getMaxAnisotropy();
+            texPlane.offset.set(0.0, 0.5);
+            texPlane.repeat.set(1, 0.5);
+
+            // 地面相当のメッシュ作成
+            var geomPlane = new THREE.PlaneGeometry(1024, 1024, 64, 64);
+            var matPlane = new THREE.MeshLambertMaterial({
+                map: texPlane,
+                transparent: true,
+                fog: true,
+            });
+            plane = new THREE.Mesh(geomPlane, matPlane);
+            geomPlane.computeFaceNormals();
+            geomPlane.computeVertexNormals();
+
+            scene.add(plane);
+            plane.rotation.x = -Math.PI / 2;
+
             // 太陽読み込み
             var textureLoader = new THREE.TextureLoader();
             var texture = textureLoader.load("sun.PNG");
             var mat = new THREE.MeshPhongMaterial();
             mat.map = texture;
 
-           
+
 
             // 太陽を作成
             var sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
@@ -69,10 +90,10 @@
             sun.position.set(0, 1.3, 0);
             scene.add(sun);
 
-             // 人間を作成
-             var texture0 = textureLoader.load("human.png");
+            // 人間を作成
+            var texture0 = textureLoader.load("human.png");
             const material0 = new THREE.SpriteMaterial({ map: texture0, });
-            
+
 
             // 人間を10人作成
             for (let i = 0; i < 10; i++) {
@@ -104,8 +125,8 @@
 
                 scene.add(sprite);
             }
-             // 猫神様をスプライトで作成
-             var texture1 = textureLoader.load("neko-god.png");
+            // 猫神様をスプライトで作成
+            var texture1 = textureLoader.load("neko-god.png");
             const material1 = new THREE.SpriteMaterial({ map: texture1, });
 
             const sprite1 = new THREE.Sprite(material1);
