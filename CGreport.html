@@ -60,16 +60,7 @@
             var mat = new THREE.MeshPhongMaterial();
             mat.map = texture;
 
-            // 人間をスプライトで作成
-            var texture0 = textureLoader.load("human.png");
-            const material0 = new THREE.SpriteMaterial({ map: texture0, });
-
-            const sprite0 = new THREE.Sprite(material0);
-            sprite0.position.x = 0;
-            sprite0.position.y = 50;
-            sprite0.position.z = 0;
-            sprite0.scale.set(100, 100, 100);
-            scene.add(sprite0);
+           
 
             // 太陽を作成
             var sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
@@ -78,12 +69,30 @@
             sun.position.set(0, 1.3, 0);
             scene.add(sun);
 
-            // 星をスプライトで作成
+             // 人間を作成
+             var texture0 = textureLoader.load("human.png");
+            const material0 = new THREE.SpriteMaterial({ map: texture0, });
+            
+
+            // 人間を10人作成
+            for (let i = 0; i < 10; i++) {
+                const sprite0 = new THREE.Sprite(material0);
+                // ランダムな座標に配置
+                sprite0.position.x = 4 * (Math.random() - 0.5);
+                sprite0.position.y = 0;
+                sprite0.position.z = 4 * (Math.random() - 0.5);
+                // スケールを調整
+                sprite0.scale.set(0.5, 0.5, 0.5);
+
+                scene.add(sprite0);
+            }
+
+            // 星を作成
             var textureLoader = new THREE.TextureLoader();
             var texture = textureLoader.load("star.png");
             const material = new THREE.SpriteMaterial({ map: texture, });
 
-            // 星を作成
+            // 星を10個作成
             for (let i = 0; i < 10; i++) {
                 const sprite = new THREE.Sprite(material);
                 // ランダムな座標に配置
