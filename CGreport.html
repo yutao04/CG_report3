@@ -54,9 +54,9 @@
             const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
             scene.add(axisHelper);
 
-            // テクスチャー読み込み
+            // 太陽読み込み
             var textureLoader = new THREE.TextureLoader();
-            var texture = textureLoader.load("sun-preview.png");
+            var texture = textureLoader.load("sun.PNG");
             var mat = new THREE.MeshPhongMaterial();
             mat.map = texture;
 
