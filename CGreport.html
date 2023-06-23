@@ -61,16 +61,7 @@
             texPlane.offset.set(0.0, 0.5);
             texPlane.repeat.set(1, 0.5);
 
-            // 地面相当のメッシュ作成
-            var geomPlane = new THREE.PlaneGeometry(1024, 1024, 64, 64);
-            var matPlane = new THREE.MeshLambertMaterial({
-                map: texPlane,
-                transparent: true,
-                fog: true,
-            });
-            plane = new THREE.Mesh(geomPlane, matPlane);
-            geomPlane.computeFaceNormals();
-            geomPlane.computeVertexNormals();
+            
 
             scene.add(plane);
             plane.rotation.x = -Math.PI / 2;
