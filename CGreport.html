@@ -55,16 +55,11 @@
             const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
             scene.add(axisHelper);
 
-            // テクスチャ読み込み
-            var texPlane = new THREE.TextureLoader().load('earth.png');
-            texPlane.anisotropy = renderer.getMaxAnisotropy();
-            texPlane.offset.set(0.0, 0.5);
-            texPlane.repeat.set(1, 0.5);
+           
 
             
 
-            scene.add(plane);
-            plane.rotation.x = -Math.PI / 2;
+            
 
             // 太陽読み込み
             var textureLoader = new THREE.TextureLoader();
@@ -89,7 +84,7 @@
             var sphereGeometry = new THREE.SphereGeometry(0.3, 32, 32);
             //半径、垂直方向の分割数、水平方向の分割数
             var earth = new THREE.Mesh(sphereGeometry, mat1);
-            earth.position.set(1, 1, 0);
+            earth.position.set(2.5, 1, 0);
             scene.add(earth);
 
             // 人間を作成
