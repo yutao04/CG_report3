@@ -104,6 +104,16 @@
 
                 scene.add(sprite);
             }
+             // 猫神様をスプライトで作成
+             var texture1 = textureLoader.load("neko-god.png");
+            const material1 = new THREE.SpriteMaterial({ map: texture1, });
+
+            const sprite1 = new THREE.Sprite(material1);
+            sprite1.position.x = 0;
+            sprite1.position.y = 50;
+            sprite1.position.z = 0;
+            sprite1.scale.set(100, 100, 100);
+            scene.add(sprite1);
 
             update();
 
